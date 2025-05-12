@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netflix Signup</title>
+  <style>
+    /* General Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Signup Container */
+    .signup-container {
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 60px;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 450px;
+      text-align: center;
+    }
+
+    .signup-container h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .signup-container p {
+      color: #737373;
+      margin-bottom: 20px;
+    }
+
+    .signup-container form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .signup-container input {
+      padding: 12px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 4px;
+      background-color: #333;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .signup-container input::placeholder {
+      color: #8c8c8c;
+    }
+
+    .signup-container button {
+      padding: 12px;
+      background-color: #e50914;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    .signup-container button:hover {
+      background-color: #f40612;
+    }
+
+    .signup-container .login {
+      color: #737373;
+      font-size: 0.9rem;
+    }
+
+    .signup-container .login a {
+      color: #fff;
+    }
+
+    .signup-container .login a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Signup Container -->
+  <div class="signup-container">
+    <h1>Sign Up</h1>
+    <p>Create a new account to start your Netflix journey.</p>
+    <form method="post" action="{% url 'signup' %}">
+      {% csrf_token %}
+      <input type="text" placeholder="First Name" id = "firstname" name="firstname" required>
+      <input type="text" placeholder="Last Name" id="lastname" name="lastname" required>
+      <input type="email" placeholder="Email" id="Email" , name="email" required>
+      <input type="password" placeholder="Password" id="password" , name="password" required>
+      <button type="submit">Sign Up</button>
+    </form>
+    <div class="login">
+      <p>Already have an account? <a href="{% url "login" %}">Sign In</a>.</p>
+    </div>
+  </div>
+</body>
+</html>

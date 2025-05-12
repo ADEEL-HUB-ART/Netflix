@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netflix</title>
+  <style>
+    /* General Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #141414;
+      color: #fff;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #e50914;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li {
+      font-size: 1rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 70vh;
+      background: url('https://via.placeholder.com/1500x800') no-repeat center center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0 50px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      max-width: 600px;
+    }
+
+    .hero button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #e50914;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Movie Grid */
+    .movie-grid {
+      padding: 20px 50px;
+    }
+
+    .movie-grid h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .movies {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+    }
+
+    .movie {
+      min-width: 200px;
+      background: #333;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .movie img {
+      width: 100%;
+      height: auto;
+    }
+
+    .movie h3 {
+      padding: 10px;
+      font-size: 1rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #000;
+      margin-top: 50px;
+    }
+    .movie {
+    min-width: 200px;
+    max-width: 250px; /* set a max-width as needed */
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.movie img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* ensures image fills the container without distortion */
+}
+  </style>
+{% load static %}
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">NETFLIX</div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">TV Shows</a></li>
+        <li><a href="#">Movies</a></li>
+        <li><a href="#">My List</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Unlimited movies, TV shows, and more.</h1>
+    <p>Watch anywhere. Cancel anytime.</p>
+    <button>Watch Now</button>
+  </section>
+
+  <!-- Movie Grid -->
+  <section class="movie-grid">
+    <h2>Popular on Netflix</h2>
+    <div class="movies">
+      {% for movie in Movieslists %}
+      <div class="movie">
+        <img src="{{ movie.image_url }}" alt=""/>
+        <h3>{{ movie.title }}</h3>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Netflix. All rights reserved.</p>
+  </footer>
+</body>
+</html>

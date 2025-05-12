@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netflix OTP Verification</title>
+  <style>
+    /* General Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* OTP Container */
+    .otp-container {
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 60px;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 450px;
+      text-align: center;
+    }
+
+    .otp-container h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .otp-container p {
+      color: #737373;
+      margin-bottom: 20px;
+    }
+
+    .otp-container form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .otp-container .otp-inputs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .otp-container .otp-inputs input {
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      font-size: 1.5rem;
+      border: none;
+      border-radius: 4px;
+      background-color: #333;
+      color: #fff;
+    }
+
+    .otp-container .otp-inputs input:focus {
+      outline: 2px solid #e50914;
+    }
+
+    .otp-container button {
+      padding: 12px;
+      background-color: #e50914;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+
+    .otp-container button:hover {
+      background-color: #f40612;
+    }
+
+    .otp-container .resend {
+      color: #737373;
+      font-size: 0.9rem;
+    }
+
+    .otp-container .resend a {
+      color: #fff;
+    }
+
+    .otp-container .resend a:hover {
+      text-decoration: underline;
+    }
+    
+    .otp-container .otp-inputs input {
+    width: 70px;  /* Increased width */
+    height: 50px;
+    text-align: center;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #333;
+    color: #fff;
+    }
+
+    .otp-container .otp-inputs input {
+    width: 150px; 
+    height: 50px;
+    text-align: center;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #333;
+    color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <!-- OTP Container -->
+  <div class="otp-container">
+    <h1>Verify Your Identity</h1>
+    <p>Enter the 6-digit code sent to your email or phone.</p>
+    <form method="post" action="{% url 'verify' %}" >
+      {% csrf_token %}
+      <div class="otp-container">
+        <h1>Verify Your Identity</h1>
+        <p>Enter the 6-digit code sent to your email or phone.</p>
+        <form method="POST" action="{% url 'verify' %}">
+            {% csrf_token %}
+            <div class="otp-inputs" style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <input type="text" name="otp" maxlength="6" required>
+            </div>
+            <button type="submit">Verify</button>
+        </form>
+        <div class="resend">
+            <p>Didn't receive the code? <a href="#">Resend</a></p>
+        </div>
+  </div>
+
+  <script>
+    // JavaScript to auto-focus the next OTP input field
+    const inputs = document.querySelectorAll('.otp-inputs input');
+    inputs.forEach((input, index) => {
+      input.addEventListener('input', (e) => {
+        if (e.target.value.length === 1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      });
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && index > 0 && !e.target.value) {
+          inputs[index - 1].focus();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
